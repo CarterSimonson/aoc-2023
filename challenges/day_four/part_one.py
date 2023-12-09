@@ -32,9 +32,9 @@ def parse_card_numbers(card: str):
     split_text = card.split(' | ')[1]
     return parse_numbers(split_text)
 
-def score_card(card):
+def score_card(card_text):
   # score the card
-  card_data = card.split(':')[1]
+  card_data = card_text.split(':')[1]
   winning_numbers = parse_winning_numbers(card_data)
   card_numbers = parse_card_numbers(card_data)
   

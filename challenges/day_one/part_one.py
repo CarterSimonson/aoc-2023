@@ -33,7 +33,7 @@ def parse_value(input):
   # combine digits
   return int(start_digit + end_digit)
 
-puzzle_values = map(parse_value, puzzle_input)
+puzzle_values = [parse_value(x) for x in puzzle_input]
 answer = sum(puzzle_values)
 
 print("The answer is " + str(answer))

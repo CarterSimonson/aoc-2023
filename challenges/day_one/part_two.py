@@ -44,7 +44,7 @@ digits = [
   'eight',
   'nine'
 ]
-reversed_digits = list(map(reverse_string, digits))
+reversed_digits = [reverse_string(x) for x in digits]
 
 def get_digit_substring(value, reversed):
   # Search using reversed digit strings if we're searching "back to front"
@@ -89,6 +89,6 @@ def parse_value(input):
 
   return int(start_digit + end_digit)
 
-puzzle_values = list(map(parse_value, puzzle_input))
+puzzle_values = [parse_value(x) for x in puzzle_input]
 
 print("Answer: " + str(sum(puzzle_values)))

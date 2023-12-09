@@ -75,7 +75,7 @@ def calculate_gear_ratio(part_numbers):
   
   return math.prod(part_numbers)
 
-gear_ratios = list(map(calculate_gear_ratio, gear_adjacency.values()))
+gear_ratios = [calculate_gear_ratio[x] for x in gear_adjacency.values()]
 answer = sum(gear_ratios)
 
 print('Answer ' + str(answer))

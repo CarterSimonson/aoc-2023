@@ -59,5 +59,5 @@ def check_game_value(raw_game_text):
   
   return math.prod(max_values.values())
 
-total = sum(list(map(check_game_value, puzzle_input)))
+total = sum([check_game_value(x) for x in puzzle_input])
 print('Total: ' + str(total))

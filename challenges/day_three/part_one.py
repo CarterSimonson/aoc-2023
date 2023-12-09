@@ -55,7 +55,7 @@ def calculate_part_adjacency(part_number):
     # If we make it through the entire perimeter without encountering a symbol, don't add the part number
     return 0
 
-part_values = list(map(calculate_part_adjacency, part_numbers))
+part_values = [calculate_part_adjacency(x) for x in part_numbers]
 answer = sum(part_values)
 
 print('Answer ' + str(answer))

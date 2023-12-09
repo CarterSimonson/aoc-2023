@@ -16,43 +16,42 @@ cards = read_input()
 
 card_quantities = {}
 
-def init_card_quantity(card: int):
-  if (card not in card_quantities):
-    card_quantities[card] = 1
-
-def win_cards(current_card: int, wins: int):
-  card_quantity = card_quantities[current_card]
-  
-  # for each win, add the quantity to the following x cards
-  for card in range(current_card + 1, current_card + wins + 1):
-    init_card_quantity(card)
-    card_quantities[card] += card_quantity
-
 def parse_numbers(input: str):
   return [int(x) for x in re.findall(r'(\d+)', input)]
 
-def parse_winning_numbers(card: str):
-  split_text = card.split(' | ')[0]
+def parse_winning_numbers(card_text: str):
+  split_text = card_text.split(' | ')[0]
   matches = parse_numbers(split_text)
   
   # Convert to a set for more efficient lookup
   return { match for match in matches}
 
-def parse_card_numbers(card: str):
-    split_text = card.split(' | ')[1]
+def parse_card_numbers(card_text: str):
+    split_text = card_text.split(' | ')[1]
     return parse_numbers(split_text)
 
-def check_card(card):
-  card_number = parse_numbers(card)[0]
+def init_card_quantity(card_id: int):
+  if (card_id not in card_quantities):
+    card_quantities[card_id] = 1
+
+def win_cards(card_id: int, wins: int):
+  card_quantity = card_quantities[card_id]
+  
+  for card in range(card_id + 1, card_id + wins + 1):
+    init_card_quantity(card)
+    card_quantities[card] += card_quantity
+
+def check_card(card_text):
+  card_id = parse_numbers(card_text)[0]
   winning_numbers = parse_winning_numbers(card.split(':')[1])
   card_numbers = parse_card_numbers(card.split(':')[1])
   
-  init_card_quantity(card_number)
+  init_card_quantity(card_id)
   
   # Score the card
   wins = len([n for n in card_numbers if n in winning_numbers])
   
-  win_cards(card_number, wins)
+  win_cards(card_id, wins)
 
 for card in cards:
   check_card(card)
